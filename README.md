@@ -37,6 +37,12 @@ npm run export
 
 This will create a `out` folder with the static files that can be deployed to any static hosting service.
 
+### Important Notes
+
+- **AI Functionality Removed**: Genkit AI features have been removed to ensure compatibility with static export
+- **Client-Side Only**: The application now works entirely on the client side for GitHub Pages compatibility
+- **Static Export**: Configured with `output: 'export'` in Next.js config
+
 ### GitHub Pages Settings
 
 1. Go to your repository Settings

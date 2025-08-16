@@ -9,7 +9,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
-import { generateBlogPostIdeasAction } from '@/app/blog/actions';
 import { Lightbulb, List, RefreshCw } from 'lucide-react';
 
 const formSchema = z.object({
@@ -30,9 +29,27 @@ export default function BlogPostIdeaGenerator() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     setResult(null);
-    const response = await generateBlogPostIdeasAction(values);
-    setResult(response);
+    
+    // Simulate API call delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Generate ideas based on the topic (client-side logic)
+    const ideas = generateIdeasFromTopic(values.topic);
+    setResult({ ideas });
     setIsLoading(false);
+  }
+
+  function generateIdeasFromTopic(topic: string): string[] {
+    // Simple client-side idea generation
+    const baseIdeas = [
+      `Exploring the cultural significance of ${topic}`,
+      `How ${topic} impacts modern society`,
+      `The historical evolution of ${topic}`,
+      `Practical applications of ${topic} in daily life`,
+      `Future trends and developments in ${topic}`
+    ];
+    
+    return baseIdeas;
   }
 
   return (
